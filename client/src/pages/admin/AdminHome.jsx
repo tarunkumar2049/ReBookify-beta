@@ -21,7 +21,7 @@ export default function AdminHome() {
   return (
     <div>
       <h2>Overview</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div className="profile-grid" style={{ gap: 16 }}>
         <div className="req-card"><h4>New users (last 30 days)</h4>{bar(charts?.newUsers)}</div>
         <div className="req-card"><h4>New listings (last 30 days)</h4>{bar(charts?.newListings)}</div>
       </div>

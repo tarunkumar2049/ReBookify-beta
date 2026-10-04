@@ -155,21 +155,109 @@ table.table th { background: #f1f5f9; }
 .modal-back { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; z-index: 90; padding: 20px; }
 .modal { background: #fff; border-radius: 16px; padding: 28px; max-width: 440px; width: 100%; }
 
+/* Shared responsive helpers (replace inline grid/flex styles) */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card-actions { display: flex; gap: 6px; }
+.card-actions .btn { flex: 1; text-align: center; }
+.req-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.modal-actions { display: flex; gap: 10px; }
+.form-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.book-grid.cols-3 { grid-template-columns: repeat(3, 1fr); margin-top: 0; }
+.steps.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.filters-toggle { display: none; }
+.toolbar-group { display: flex; gap: 8px; }
+img { max-width: 100%; }
+.book-title, .detail-card h1 { overflow-wrap: anywhere; }
+
 /* Responsive */
 @media (max-width: 960px) {
   .hero-grid, .detail-grid { grid-template-columns: 1fr; }
   .cards4, .cat-grid, .book-grid, .steps, .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .book-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .steps.cols-5 { grid-template-columns: repeat(3, 1fr); }
   .browse-layout, .admin-layout { grid-template-columns: 1fr; }
   .filters, .admin-nav { position: static; }
   .admin-nav { flex-direction: row; flex-wrap: wrap; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .hero h1 { font-size: 2.1rem; }
+  /* collapsible filter panel */
+  .filters-toggle { display: inline-block; }
+  .browse-layout .filters { display: none; }
+  .browse-layout .filters.open { display: block; }
 }
 @media (max-width: 640px) {
-  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px; border-bottom: 1px solid var(--border); align-items: stretch; }
+  .container { padding: 0 16px; }
+  .section { padding: 30px 0; }
+  .section h2 { font-size: 1.45rem; }
+  .container.section > h1, .detail-card h1 { font-size: 1.6rem; }
+
+  /* nav */
+  .header { position: sticky; }
+  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px; border-bottom: 1px solid var(--border); align-items: stretch; max-height: calc(100vh - 64px); overflow-y: auto; box-shadow: var(--shadow); z-index: 60; }
   .nav.open { display: flex; }
-  .hamburger { display: block; }
-  .cards4, .cat-grid, .book-grid, .steps, .stat-grid { grid-template-columns: 1fr; }
-  .hero-art img { height: 170px; }
+  .nav a, .nav .btn { text-align: center; }
+  .hamburger { display: block; min-width: 44px; min-height: 44px; }
+
+  /* grids stack */
+  .cards4, .cat-grid, .book-grid, .steps, .stat-grid,
+  .book-grid.cols-3 { grid-template-columns: 1fr; }
+  .steps.cols-5 { grid-template-columns: repeat(2, 1fr); }
+  .form-row, .profile-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 18px; }
+  .step { padding: 16px; }
+
+  /* hero */
+  .hero { padding: 32px 0 22px; }
+  .hero h1 { font-size: 1.85rem; }
+  .hero p.sub { font-size: 1rem; }
+  .hero-cta { flex-direction: column; }
+  .hero-cta .btn { text-align: center; }
+  .searchbar { flex-direction: column; }
+  .searchbar input { min-width: 0; width: 100%; }
+  .searchbar .btn { width: 100%; }
+  .hero-art { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+  .hero-art img { flex: 0 0 62%; width: 62%; height: 230px; scroll-snap-align: start; }
+  .hero-stats { flex-wrap: wrap; gap: 14px; }
+
+  /* book cards */
+  .book-card img { height: auto; aspect-ratio: 4/5; max-height: 400px; }
+  .card-actions { flex-direction: column; }
+  .card-actions .btn { width: 100%; }
+
+  /* detail page */
+  .detail-card { padding: 18px; }
+  .detail-grid img.cover { max-height: 420px; }
+  .detail-actions .btn { flex: 1 1 45%; text-align: center; }
+
+  /* toolbar + filters */
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-group { width: 100%; }
+  .toolbar-group select { flex: 1; min-width: 0; }
+
+  /* forms: 16px prevents iOS auto-zoom, 44px touch targets */
+  .form-wrap { padding: 20px; margin: 20px auto; }
+  .form-wrap input, .form-wrap select, .form-wrap textarea,
+  .filters select, .filters input, .toolbar select { font-size: 16px; }
+  .btn { min-height: 44px; }
+  .tab { padding: 10px 18px; }
+  .form-actions .btn { flex: 1; text-align: center; }
+  .modal-actions .btn { flex: 1; text-align: center; }
+  .req-actions .btn { flex: 1; text-align: center; min-width: 120px; }
+
+  /* tables + misc */
+  .table-wrap { -webkit-overflow-scrolling: touch; }
+  .pagination { flex-wrap: wrap; }
+  .empty { padding: 40px 16px; }
   .eco { padding: 26px; }
+  .eco h2 { font-size: 1.4rem; }
+  .toast { left: 16px; right: 16px; text-align: center; }
+  .modal { padding: 22px; max-height: 90vh; overflow-y: auto; }
+  .admin-nav { overflow-x: auto; }
+  .admin-nav a { white-space: nowrap; }
+}
+@media (max-width: 400px) {
+  .hero h1 { font-size: 1.6rem; }
+  .steps.cols-5 { grid-template-columns: 1fr 1fr; }
+  .stat strong { font-size: 1.5rem; }
 }

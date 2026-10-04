@@ -12,7 +12,7 @@ export default function HowItWorks() {
         <div className="step"><div className="num">4</div><h4>Complete Exchange</h4><p className="muted small">Once accepted, complete the exchange.</p></div>
       </div>
       <h2 style={{ marginTop: 36 }}>Want to sell a book?</h2>
-      <div className="steps" style={{ gridTemplateColumns: 'repeat(5,1fr)' }}>
+      <div className="steps cols-5">
         {['Create account', 'Add book', 'Receive request', 'Accept request', 'Complete transaction'].map((t, i) => (
           <div className="step" key={t}><div className="num">{i + 1}</div><h4>{t}</h4></div>
         ))}

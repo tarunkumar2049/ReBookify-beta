@@ -10,7 +10,7 @@ function ReqCard({ r, onAction, mine }) {
       <p>Message: {r.message || '—'}</p>
       {r.offer && <p className="muted small">Offer: {r.offer}</p>}
       <p>Status: <span className={`badge ${statusColor(r.status)}`}>{r.status}</span> <span className="muted small">{new Date(r.created_at).toLocaleString()}</span></p>
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div className="req-actions">
         {r.status === 'Pending' && !mine && (
           <>
             <button className="btn btn-primary" onClick={() => onAction(r._id, 'Accepted')}>Accept</button>

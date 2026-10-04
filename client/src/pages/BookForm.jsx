@@ -58,7 +58,7 @@ export default function BookForm() {
         <input value={form.title} onChange={(e) => set('title', e.target.value)} placeholder="e.g. Data Structures" />
         <label>Author</label>
         <input value={form.author} onChange={(e) => set('author', e.target.value)} placeholder="e.g. Seymour Lipschutz" />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <div className="form-row">
           <div>
             <label>Category</label>
             <select value={form.category} onChange={(e) => set('category', e.target.value)}>
@@ -70,7 +70,7 @@ export default function BookForm() {
             <input type="number" min="0" value={form.price} onChange={(e) => set('price', e.target.value)} placeholder="450" />
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <div className="form-row">
           <div>
             <label>Condition</label>
             <select value={form.condition} onChange={(e) => set('condition', e.target.value)}>
@@ -91,7 +91,7 @@ export default function BookForm() {
         <label>Book Image URL</label>
         <input value={form.image_url} onChange={(e) => set('image_url', e.target.value)} placeholder="https://… (optional)" />
         {form.image_url && <img src={form.image_url} alt="preview" style={{ width: 120, borderRadius: 10, marginTop: 8 }} onError={(e) => { e.target.style.display = 'none'; }} />}
-        <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
+        <div className="form-actions">
           <button type="button" className="btn btn-ghost" onClick={() => nav(-1)}>Cancel</button>
           <button type="submit" className="btn btn-primary">{isEdit ? 'Save Changes' : 'Publish Listing'}</button>
         </div>

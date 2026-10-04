@@ -28,7 +28,7 @@ export default function Profile() {
   return (
     <div className="container section">
       <h1>User Profile</h1>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }} className="profile-grid">
+      <div className="profile-grid">
         <form className="form-wrap" style={{ margin: 0 }} onSubmit={save}>
           <h3>Edit Profile</h3>
           <p className="muted small">User ID: {user?._id} (protected)</p>
@@ -50,7 +50,6 @@ export default function Profile() {
           <button className="btn btn-outline" type="submit" style={{ marginTop: 12 }}>Change Password</button>
         </form>
       </div>
-      <style>{`@media(max-width:800px){.profile-grid{grid-template-columns:1fr !important}}`}</style>
     </div>
   );
 }

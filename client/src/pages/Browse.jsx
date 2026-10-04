@@ -46,18 +46,17 @@ export default function Browse() {
   return (
     <div className="container section">
       <h2>Browse Books</h2>
-      <button className="btn btn-ghost" style={{ display: 'none' }} />
       <div className="toolbar">
         <span className="muted">{total} result{total === 1 ? '' : 's'}{q && <> for “<strong>{q}</strong>”</>}</span>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button className="btn btn-ghost" onClick={() => setShowFilters(!showFilters)}>☰ Filters</button>
+        <div className="toolbar-group">
+          <button className="btn btn-ghost filters-toggle" onClick={() => setShowFilters(!showFilters)}>☰ Filters</button>
           <select value={sort} onChange={(e) => set('sort', e.target.value)} style={{ padding: 9, borderRadius: 9 }}>
             {SORTS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
           </select>
         </div>
       </div>
       <div className="browse-layout">
-        <aside className="filters" style={{ display: showFilters ? 'block' : undefined }} id="filterPanel">
+        <aside className={`filters ${showFilters ? 'open' : ''}`}>
           <h3>Filters</h3>
           <label>Search</label>
           <input value={q} onChange={(e) => set('q', e.target.value)} placeholder="Python, Java…" />
@@ -91,7 +90,7 @@ export default function Browse() {
               <p className="muted">We couldn't find any books matching your search.<br />Try a different title, author, category, or keyword.</p>
             </div>
           ) : (
-            <div className="book-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', marginTop: 0 }}>
+            <div className="book-grid cols-3">
               {(books || []).map((b) => <BookCard key={b._id} book={b} />)}
             </div>
           )}
@@ -105,7 +104,6 @@ export default function Browse() {
           )}
         </div>
       </div>
-      <style>{`@media(max-width:960px){#filterPanel{display:${showFilters ? 'block' : 'none'}} .book-grid{grid-template-columns:1fr 1fr !important}}@media(max-width:640px){.book-grid{grid-template-columns:1fr !important}}`}</style>
     </div>
   );
 }

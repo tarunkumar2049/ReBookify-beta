@@ -61,9 +61,9 @@ export default function Dashboard() {
                 <span className={`badge ${statusColor(b.status)}`}>{b.status}</span>
                 <strong>{b.title}</strong>
                 <span className="muted small">{fmtPrice(b.price)} • {b.condition}</span>
-                <div style={{ display: 'flex', gap: 6 }}>
-                  <Link to={`/books/${b._id}`} className="btn btn-ghost" style={{ flex: 1, textAlign: 'center' }}>View</Link>
-                  <Link to={`/books/${b._id}/edit`} className="btn btn-outline" style={{ flex: 1, textAlign: 'center' }}>Edit</Link>
+                <div className="card-actions">
+                  <Link to={`/books/${b._id}`} className="btn btn-ghost">View</Link>
+                  <Link to={`/books/${b._id}/edit`} className="btn btn-outline">Edit</Link>
                   <button className="btn btn-danger" onClick={() => setDel(b._id)}>Delete</button>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function Dashboard() {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h3>Delete this listing?</h3>
             <p className="muted">This action cannot be undone.</p>
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div className="modal-actions">
               <button className="btn btn-ghost" onClick={() => setDel(null)}>Cancel</button>
               <button className="btn btn-danger" onClick={doDelete}>Delete</button>
             </div>
