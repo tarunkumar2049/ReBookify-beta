@@ -17,7 +17,7 @@ export default function BookForm() {
 
   useEffect(() => {
     api.get('/categories').then((r) => {
-      setCats(r.data.categories);
+      setCats(r.data.categories || []);
       if (!isEdit && r.data.categories[0]) setForm((f) => ({ ...f, category: f.category || r.data.categories[0].category_name }));
     }).catch(() => {});
     if (isEdit) {
@@ -62,7 +62,7 @@ export default function BookForm() {
           <div>
             <label>Category</label>
             <select value={form.category} onChange={(e) => set('category', e.target.value)}>
-              {cats.map((c) => <option key={c._id} value={c.category_name}>{c.category_name}</option>)}
+              {(cats || []).map((c) => <option key={c._id} value={c.category_name}>{c.category_name}</option>)}
             </select>
           </div>
           <div>

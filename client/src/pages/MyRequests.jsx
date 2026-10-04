@@ -38,7 +38,7 @@ export default function MyRequests() {
       api.get('/requests', { params: { type: 'sent' } }),
       api.get('/requests', { params: { type: 'received' } })
     ]);
-    setSent(s.data.requests); setReceived(r.data.requests);
+    setSent(s.data.requests || []); setReceived(r.data.requests || []);
   };
   useEffect(() => { load(); }, []);
 

@@ -34,12 +34,12 @@ export default function Browse() {
   };
 
   useEffect(() => {
-    api.get('/categories').then((r) => setCats(r.data.categories)).catch(() => {});
+    api.get('/categories').then((r) => setCats(r.data.categories || [])).catch(() => {});
   }, []);
 
   useEffect(() => {
     api.get('/books', { params: { q, category, condition, listing_type, minPrice, maxPrice, sort, page, limit: 12 } })
-      .then((r) => { setBooks(r.data.books); setTotal(r.data.total); setPages(r.data.pages); })
+      .then((r) => { setBooks(r.data.books || []); setTotal(r.data.total || 0); setPages(r.data.pages || 1); })
       .catch(() => {});
   }, [q, category, condition, listing_type, minPrice, maxPrice, sort, page]);
 
@@ -64,7 +64,7 @@ export default function Browse() {
           <label>Category</label>
           <select value={category} onChange={(e) => set('category', e.target.value)}>
             <option value="">All categories</option>
-            {cats.map((c) => <option key={c._id} value={c.category_name}>{c.category_name}</option>)}
+            {(cats || []).map((c) => <option key={c._id} value={c.category_name}>{c.category_name}</option>)}
           </select>
           <label>Condition</label>
           <select value={condition} onChange={(e) => set('condition', e.target.value)}>
@@ -92,7 +92,7 @@ export default function Browse() {
             </div>
           ) : (
             <div className="book-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', marginTop: 0 }}>
-              {books.map((b) => <BookCard key={b._id} book={b} />)}
+              {(books || []).map((b) => <BookCard key={b._id} book={b} />)}
             </div>
           )}
           {pages > 1 && (

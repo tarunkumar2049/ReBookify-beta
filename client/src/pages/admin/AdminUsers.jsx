@@ -6,7 +6,7 @@ export default function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [q, setQ] = useState('');
   const { notify } = useAuth();
-  const load = () => api.get('/admin/users', { params: { q } }).then((r) => setUsers(r.data.users)).catch(() => {});
+  const load = () => api.get('/admin/users', { params: { q } }).then((r) => setUsers(r.data.users || [])).catch(() => {});
   useEffect(() => { load(); }, []);
   const remove = async (id) => {
     if (!confirm('Remove this user and their listings?')) return;

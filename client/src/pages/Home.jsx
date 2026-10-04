@@ -10,8 +10,8 @@ export default function Home() {
   const nav = useNavigate();
 
   useEffect(() => {
-    api.get('/books', { params: { limit: 8 } }).then((r) => setFeatured(r.data.books)).catch(() => {});
-    api.get('/categories').then((r) => setCats(r.data.categories.slice(0, 8))).catch(() => {});
+    api.get('/books', { params: { limit: 8 } }).then((r) => setFeatured(r.data.books || [])).catch(() => {});
+    api.get('/categories').then((r) => setCats((r.data.categories || []).slice(0, 8))).catch(() => {});
   }, []);
 
   return (
@@ -60,7 +60,7 @@ export default function Home() {
         <div className="container">
           <h2>Browse by Category</h2>
           <div className="cat-grid">
-            {cats.map((c) => (
+            {(cats || []).map((c) => (
               <Link key={c._id} to={`/browse?category=${encodeURIComponent(c.category_name)}`} className="cat-card">
                 <div className="icon">{c.icon || '📚'}</div>
                 <h4 style={{ margin: '8px 0 4px' }}>{c.category_name}</h4>
@@ -76,7 +76,7 @@ export default function Home() {
         <div className="container">
           <h2>Featured Books</h2>
           <div className="book-grid">
-            {featured.map((b) => <BookCard key={b._id} book={b} />)}
+            {(featured || []).map((b) => <BookCard key={b._id} book={b} />)}
           </div>
           {featured.length === 0 && <div className="empty"><h3>No books yet</h3><p className="muted">Be the first to list a book.</p></div>}
           <div className="center" style={{ marginTop: 20 }}><Link to="/browse" className="btn btn-primary">View All Books</Link></div>

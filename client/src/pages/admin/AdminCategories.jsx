@@ -7,7 +7,7 @@ export default function AdminCategories() {
   const [form, setForm] = useState({ category_name: '', description: '', icon: '📚' });
   const [edit, setEdit] = useState(null);
   const { notify } = useAuth();
-  const load = () => api.get('/categories').then((r) => setCats(r.data.categories)).catch(() => {});
+  const load = () => api.get('/categories').then((r) => setCats(r.data.categories || [])).catch(() => {});
   useEffect(() => { load(); }, []);
 
   const submit = async (e) => {

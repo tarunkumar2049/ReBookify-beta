@@ -7,7 +7,7 @@ export default function AdminBooks() {
   const [q, setQ] = useState('');
   const [status, setStatus] = useState('');
   const { notify } = useAuth();
-  const load = () => api.get('/admin/books', { params: { q, status } }).then((r) => setBooks(r.data.books)).catch(() => {});
+  const load = () => api.get('/admin/books', { params: { q, status } }).then((r) => setBooks(r.data.books || [])).catch(() => {});
   useEffect(() => { load(); }, []);
   const remove = async (id) => {
     if (!confirm('Remove this inappropriate listing?')) return;

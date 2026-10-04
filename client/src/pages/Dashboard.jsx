@@ -22,7 +22,7 @@ export default function Dashboard() {
         api.get('/requests', { params: { type: 'received' } }),
         api.get('/transactions'),
       ]);
-      setBooks(b.data.books); setSent(s.data.requests); setReceived(r.data.requests); setTxns(t.data.transactions.slice(0, 5));
+      setBooks(b.data.books || []); setSent(s.data.requests || []); setReceived(r.data.requests || []); setTxns((t.data.transactions || []).slice(0, 5));
     } catch {}
   };
 

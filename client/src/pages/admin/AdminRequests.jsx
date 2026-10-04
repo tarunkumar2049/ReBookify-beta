@@ -5,7 +5,7 @@ export default function AdminRequests() {
   const [reqs, setReqs] = useState([]);
   const [status, setStatus] = useState('');
   useEffect(() => {
-    api.get('/admin/requests', { params: status ? { status } : {} }).then((r) => setReqs(r.data.requests)).catch(() => {});
+    api.get('/admin/requests', { params: status ? { status } : {} }).then((r) => setReqs(r.data.requests || [])).catch(() => {});
   }, [status]);
   return (
     <div>

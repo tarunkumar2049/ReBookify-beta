@@ -4,7 +4,7 @@ import api from '../../services/api';
 export default function AdminTransactions() {
   const [txns, setTxns] = useState([]);
   useEffect(() => {
-    api.get('/admin/transactions').then((r) => setTxns(r.data.transactions)).catch(() => {});
+    api.get('/admin/transactions').then((r) => setTxns(r.data.transactions || [])).catch(() => {});
   }, []);
   return (
     <div>

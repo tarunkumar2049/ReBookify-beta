@@ -13,7 +13,7 @@ export default function MyListings() {
   const load = () => {
     if (!user) return;
     api.get('/books', { params: { owner: user._id, status: 'all', limit: 100 } })
-      .then((r) => setBooks(r.data.books)).catch(() => {});
+      .then((r) => setBooks(r.data.books || [])).catch(() => {});
   };
   useEffect(() => { load(); }, [user]);
 

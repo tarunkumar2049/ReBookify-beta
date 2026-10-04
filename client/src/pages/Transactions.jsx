@@ -6,7 +6,7 @@ export default function Transactions() {
   const [txns, setTxns] = useState([]);
   const [status, setStatus] = useState('');
   const load = () => {
-    api.get('/transactions', { params: status ? { status } : {} }).then((r) => setTxns(r.data.transactions)).catch(() => {});
+    api.get('/transactions', { params: status ? { status } : {} }).then((r) => setTxns(r.data.transactions || [])).catch(() => {});
   };
   useEffect(() => { load(); }, [status]);
 
