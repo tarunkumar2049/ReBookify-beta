@@ -353,9 +353,7 @@ table.table tbody tr:hover td { background: #f8fafc; }
   .searchbar { flex-direction: column; }
   .searchbar input { min-width: 0; width: 100%; }
   .searchbar .btn { width: 100%; }
-  .hero-art { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
-  .hero-art img { flex: 0 0 62%; width: 62%; height: 230px; scroll-snap-align: start; }
-  .hero-art img:nth-child(2) { transform: none; }
+  .hero-art { display: none; }
   .hero-stats { flex-wrap: wrap; gap: 14px; }
 
   /* book cards become compact horizontal rows (image+title already link) */
