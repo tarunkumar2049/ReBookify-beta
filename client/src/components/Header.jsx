@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header-inner">
-        <Link to="/" className="logo">📚 ReBookify</Link>
+        <Link to="/" className="logo"><span className="logo-mark">📚</span>ReBookify</Link>
         <button className="hamburger" onClick={() => setOpen(!open)} aria-label="Menu">☰</button>
         <nav className={`nav ${open ? 'open' : ''}`}>
           <NavLink to="/" onClick={() => setOpen(false)}>Home</NavLink>

@@ -19,7 +19,8 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <h1>Give Your Books a Second Life.</h1>
+            <div className="hero-pill"><span className="dot" />Student marketplace · Buy. Sell. Exchange. Reuse.</div>
+            <h1>Give Your Books a <span className="accent">Second Life.</span></h1>
             <p className="sub">Buy, sell, and exchange books with students around you. Save money, discover great books, and reduce waste.</p>
             <div className="hero-cta">
               <Link to="/browse" className="btn btn-primary">Browse Books</Link>
@@ -45,7 +46,8 @@ export default function Home() {
 
       <section className="section">
         <div className="container">
-          <h2 className="center">Why ReBookify?</h2>
+          <div className="center"><span className="eyebrow">Why ReBookify</span></div>
+          <h2 className="center">Affordable books, less waste</h2>
           <p className="center muted">Affordable, centralized and sustainable book exchange for students.</p>
           <div className="cards4">
             <div className="feature-card"><div className="icon">💰</div><h3>Save Money</h3><p className="muted">Find affordable used textbooks and study materials.</p></div>
@@ -58,6 +60,7 @@ export default function Home() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
+          <span className="eyebrow">Categories</span>
           <h2>Browse by Category</h2>
           <div className="cat-grid">
             {(cats || []).map((c) => (
@@ -74,6 +77,7 @@ export default function Home() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
+          <span className="eyebrow">Fresh listings</span>
           <h2>Featured Books</h2>
           <div className="book-grid">
             {(featured || []).map((b) => <BookCard key={b._id} book={b} />)}
@@ -95,6 +99,7 @@ export default function Home() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
+          <div className="center"><span className="eyebrow">Simple process</span></div>
           <h2 className="center">How It Works</h2>
           <div className="steps">
             <div className="step"><div className="num">1</div><h4>Find a Book</h4><p className="muted small">Search by title, author, category or keyword.</p></div>
